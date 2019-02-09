@@ -1,12 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import DynForm from './dynForm/dynForm'
+
+
+//自定义组件配置信息
+const compConfig = [
+    {
+        type: 'input',
+        name: '姓名',
+        value: '123'
+    },
+    {
+        type: 'select',
+        name: '年龄',
+        value: 11,
+        options: [11, 22, 33]
+    },
+    {
+        type: 'input',
+        name: '毕业学校',
+        value: 'seu',
+
+    },
+    {
+        type: 'select',
+        name: '性别',
+        value: '男',
+        options: ['男', '女']
+    },
+];
+
+class DynFormTest extends React.Component {
+    handleChange = (val) => {
+        console.log('动态表单变化值:', val)
+    };
+
+    render() {
+        return (
+            <DynForm formConfig={compConfig} change={this.handleChange}/>
+        )
+    }
+}
+
+ReactDOM.render(<DynFormTest/>, document.getElementById('root'));
